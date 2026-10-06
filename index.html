@@ -1,393 +1,1479 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ICE777</title>
+<title>QUANTUM 5D — Future Fitness</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --ice-red:#ed101c;
-  --ice-red-dark:#c90012;
-  --ice-black:#080808;
-  --ice-panel:#141414;
-  --ice-border:#383838;
-  --ice-text:#f5f5f5;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
+:root{
+    --bg:#030409;
+    --panel:rgba(12,15,24,.72);
+    --cyan:#00eaff;
+    --violet:#8b5cff;
+    --pink:#ff38c8;
+    --green:#b9ff2c;
+    --white:#f7f8ff;
+    --muted:#9298a9;
+    --border:rgba(255,255,255,.1);
 }
 
 body{
-  background:var(--ice-black);
-  color:var(--ice-text);
+    background:var(--bg);
+    color:var(--white);
+    font-family:Inter,sans-serif;
+    overflow-x:hidden;
 }
 
-.container{
-  display:flex;
-  flex-direction:row-reverse;
-  min-height:100vh;
+/* BACKGROUND */
+
+.space{
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 15% 20%,rgba(0,234,255,.09),transparent 28%),
+        radial-gradient(circle at 85% 65%,rgba(139,92,255,.11),transparent 30%),
+        radial-gradient(circle at 45% 100%,rgba(255,56,200,.07),transparent 28%),
+        #030409;
 }
 
-.demo{
-  width:70%;
-  background:#000;
-  position:relative;
+.space::before{
+    content:"";
+    position:absolute;
+    inset:-100px;
+    background-image:
+        radial-gradient(circle,rgba(255,255,255,.5) 1px,transparent 1px);
+    background-size:80px 80px;
+    opacity:.15;
+    animation:stars 30s linear infinite;
 }
 
-iframe{
-  width:100%;
-  height:100vh;
-  border:none;
+@keyframes stars{
+    to{transform:translate(-80px,80px)}
 }
 
-.right{
-  width:30%;
-  padding:30px 22px;
-  background:linear-gradient(180deg,#1b1b1b,#090909);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow-y:auto;
+/* NAV */
+
+nav{
+    position:fixed;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(1180px,calc(100% - 30px));
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 22px;
+    border:1px solid var(--border);
+    border-radius:20px;
+    background:rgba(5,7,12,.72);
+    backdrop-filter:blur(20px);
+    z-index:100;
+    box-shadow:0 20px 80px rgba(0,0,0,.35);
 }
 
-.box{
-  width:100%;
-  background:var(--ice-panel);
-  border:1px solid var(--ice-border);
-  border-top:3px solid var(--ice-red);
-  border-radius:8px;
-  padding:26px 20px;
-  text-align:center;
-  box-shadow:0 8px 28px rgba(0,0,0,.45);
+.logo{
+    font-family:Orbitron;
+    font-weight:900;
+    letter-spacing:2px;
+    font-size:20px;
+}
+
+.logo span{
+    color:var(--cyan);
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:30px;
+}
+
+nav a{
+    color:#aeb4c3;
+    text-decoration:none;
+    font-size:12px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:var(--cyan);
+}
+
+.nav-btn{
+    padding:12px 18px;
+    color:#001014;
+    background:var(--cyan);
+    border-radius:10px;
+    font-weight:800;
+}
+
+/* COMMON */
+
+section{
+    width:min(1180px,calc(100% - 30px));
+    margin:auto;
+    padding:120px 0;
+}
+
+.eyebrow{
+    display:inline-flex;
+    gap:9px;
+    align-items:center;
+    padding:8px 13px;
+    border:1px solid rgba(0,234,255,.22);
+    border-radius:50px;
+    color:var(--cyan);
+    background:rgba(0,234,255,.04);
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 15px var(--cyan);
+    animation:pulse 1.4s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.8);
+        opacity:.4;
+    }
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:35px;
+    align-items:center;
+    padding-top:150px;
+}
+
+.hero h1{
+    font-family:Orbitron;
+    font-size:clamp(48px,7vw,94px);
+    line-height:.92;
+    letter-spacing:-5px;
+    margin-top:25px;
+}
+
+.hero h1 span{
+    color:var(--cyan);
+    text-shadow:0 0 40px rgba(0,234,255,.25);
+}
+
+.hero h1 .outline{
+    color:transparent;
+    -webkit-text-stroke:1px rgba(255,255,255,.6);
+}
+
+.hero-text{
+    max-width:530px;
+    margin:28px 0;
+    color:var(--muted);
+    line-height:1.8;
+    font-size:14px;
+}
+
+.buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    padding:15px 22px;
+    border-radius:11px;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:800;
+    transition:.3s;
+}
+
+.btn-primary{
+    color:#001014;
+    background:var(--cyan);
+    box-shadow:0 0 35px rgba(0,234,255,.22);
+}
+
+.btn-primary:hover{
+    transform:translateY(-4px);
+    box-shadow:0 0 60px rgba(0,234,255,.4);
+}
+
+.btn-secondary{
+    color:white;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.04);
+}
+
+/* 5D TUNNEL */
+
+.dimension{
+    height:590px;
+    position:relative;
+    perspective:1300px;
+    display:grid;
+    place-items:center;
+}
+
+.tunnel{
+    width:390px;
+    height:390px;
+    position:relative;
+    transform-style:preserve-3d;
+    transform:rotateX(8deg) rotateY(-12deg);
+    animation:tunnelFloat 5s ease-in-out infinite;
+}
+
+@keyframes tunnelFloat{
+    50%{
+        transform:rotateX(-8deg) rotateY(15deg) translateY(-18px);
+    }
+}
+
+.portal-ring{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    border:2px solid var(--cyan);
+    box-shadow:
+        0 0 25px rgba(0,234,255,.35),
+        inset 0 0 35px rgba(0,234,255,.15);
+}
+
+.portal-ring:nth-child(1){
+    transform:rotateY(0deg);
+}
+
+.portal-ring:nth-child(2){
+    transform:rotateY(25deg) scale(.88);
+    border-color:var(--violet);
+    animation:rotateA 7s linear infinite;
+}
+
+.portal-ring:nth-child(3){
+    transform:rotateY(50deg) scale(.76);
+    border-color:var(--pink);
+    animation:rotateB 8s linear infinite reverse;
+}
+
+.portal-ring:nth-child(4){
+    transform:rotateY(75deg) scale(.64);
+    border-color:var(--green);
+    animation:rotateA 9s linear infinite;
+}
+
+.portal-ring:nth-child(5){
+    transform:rotateY(100deg) scale(.52);
+    border-color:var(--cyan);
+    animation:rotateB 6s linear infinite reverse;
+}
+
+@keyframes rotateA{
+    to{transform:rotateY(385deg) scale(.88)}
+}
+
+@keyframes rotateB{
+    to{transform:rotateY(-310deg) scale(.76)}
+}
+
+.energy{
+    position:absolute;
+    width:125px;
+    height:125px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 30% 25%,white 0 2%,var(--cyan) 9%,var(--violet) 35%,#070912 72%);
+    box-shadow:
+        0 0 30px var(--cyan),
+        0 0 100px rgba(139,92,255,.5),
+        inset -25px -20px 30px rgba(0,0,0,.7);
+    transform-style:preserve-3d;
+    animation:energy 4s ease-in-out infinite;
+    z-index:4;
+}
+
+@keyframes energy{
+    50%{
+        transform:translateZ(70px) rotateY(180deg) scale(1.1);
+    }
+}
+
+.energy::after{
+    content:"";
+    position:absolute;
+    inset:-35px;
+    border:1px dashed rgba(0,234,255,.6);
+    border-radius:50%;
+    animation:spin 5s linear infinite;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+
+.float{
+    position:absolute;
+    padding:13px 15px;
+    min-width:145px;
+    background:rgba(8,11,18,.72);
+    border:1px solid var(--border);
+    border-radius:14px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 20px 50px rgba(0,0,0,.45);
+    z-index:8;
+    animation:floatCard 4s ease-in-out infinite;
+}
+
+.float small{
+    color:#7d8493;
+    font-size:9px;
+}
+
+.float strong{
+    display:block;
+    font-family:Orbitron;
+    margin-top:5px;
+    font-size:20px;
+}
+
+.float.a{
+    left:0;
+    top:70px;
+}
+
+.float.b{
+    right:-5px;
+    bottom:100px;
+    animation-delay:-1.5s;
+}
+
+.float.c{
+    right:20px;
+    top:30px;
+    animation-delay:-2.3s;
+}
+
+@keyframes floatCard{
+    50%{
+        transform:translateY(-18px) translateZ(30px);
+    }
+}
+
+/* SECTION HEAD */
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:30px;
+    margin-bottom:45px;
+}
+
+.section-head h2{
+    font-family:Orbitron;
+    font-size:clamp(32px,5vw,58px);
+    line-height:1;
+    margin-top:20px;
+    letter-spacing:-3px;
+}
+
+.section-head p{
+    max-width:400px;
+    color:var(--muted);
+    line-height:1.7;
+    font-size:13px;
+}
+
+/* 5D CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    perspective:1200px;
+}
+
+.card{
+    min-height:360px;
+    padding:28px;
+    position:relative;
+    overflow:hidden;
+    border-radius:23px;
+    border:1px solid var(--border);
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.015));
+    transform-style:preserve-3d;
+    transition:transform .15s ease,border .3s;
+}
+
+.card:hover{
+    border-color:rgba(0,234,255,.4);
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    right:-70px;
+    top:-70px;
+    border-radius:50%;
+    background:var(--cyan);
+    filter:blur(75px);
+    opacity:.08;
+}
+
+.card:nth-child(2)::before{
+    background:var(--pink);
+}
+
+.card:nth-child(3)::before{
+    background:var(--violet);
+}
+
+.card-num{
+    color:var(--cyan);
+    font-family:Orbitron;
+    font-size:11px;
+}
+
+.card-icon{
+    position:absolute;
+    right:25px;
+    top:23px;
+    font-size:42px;
+    transform:translateZ(50px);
+    text-shadow:0 0 25px var(--cyan);
+}
+
+.card h3{
+    margin-top:110px;
+    font-family:Orbitron;
+    font-size:22px;
+    transform:translateZ(35px);
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.7;
+    font-size:13px;
+    margin-top:14px;
+    transform:translateZ(25px);
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    background:var(--border);
+    gap:1px;
+}
+
+.stat{
+    text-align:center;
+    padding:35px 15px;
+    background:#080a0f;
+}
+
+.stat strong{
+    display:block;
+    font-family:Orbitron;
+    color:var(--cyan);
+    font-size:31px;
+    margin-bottom:7px;
+}
+
+.stat span{
+    color:var(--muted);
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+/* HOLOGRAM */
+
+.hologram{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.holo-main,
+.holo-side{
+    padding:35px;
+    border:1px solid var(--border);
+    border-radius:25px;
+    background:var(--panel);
+    backdrop-filter:blur(15px);
+}
+
+.holo-main{
+    min-height:430px;
+}
+
+.holo-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:40px;
+}
+
+.holo-title{
+    font-family:Orbitron;
+}
+
+.live{
+    color:var(--green);
+    font-size:10px;
+}
+
+.holo-score{
+    display:flex;
+    align-items:center;
+    gap:35px;
+}
+
+.score{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:
+        radial-gradient(circle,#080b11 58%,transparent 59%),
+        conic-gradient(var(--cyan) 0 92%,rgba(255,255,255,.06) 92%);
+    box-shadow:0 0 50px rgba(0,234,255,.12);
+}
+
+.score strong{
+    font-family:Orbitron;
+    font-size:42px;
+}
+
+.holo-score h3{
+    font-size:23px;
+}
+
+.holo-score p{
+    color:var(--muted);
+    line-height:1.7;
+    margin-top:10px;
+    font-size:13px;
+}
+
+.metrics{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:40px;
+}
+
+.metric{
+    padding:17px;
+    border-radius:13px;
+    background:rgba(255,255,255,.035);
+}
+
+.metric small{
+    color:var(--muted);
+    font-size:9px;
+}
+
+.metric strong{
+    display:block;
+    font-family:Orbitron;
+    margin-top:8px;
+}
+
+.holo-side h3{
+    font-family:Orbitron;
+    margin-bottom:28px;
+}
+
+.progress{
+    margin-bottom:25px;
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+    font-size:11px;
+}
+
+.progress-top span:last-child{
+    color:var(--cyan);
+}
+
+.track{
+    height:6px;
+    border-radius:20px;
+    background:rgba(255,255,255,.07);
+    overflow:hidden;
+}
+
+.fill{
+    width:89%;
+    height:100%;
+    background:var(--cyan);
+    box-shadow:0 0 15px var(--cyan);
+}
+
+.fill.two{
+    width:74%;
+    background:var(--pink);
+    box-shadow:0 0 15px var(--pink);
+}
+
+.fill.three{
+    width:95%;
+    background:var(--green);
+    box-shadow:0 0 15px var(--green);
+}
+
+.fill.four{
+    width:82%;
+    background:var(--violet);
+    box-shadow:0 0 15px var(--violet);
+}
+
+/* PRICING */
+
+.pricing{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.price-card{
+    padding:35px;
+    border:1px solid var(--border);
+    border-radius:23px;
+    background:#080a0f;
+    position:relative;
+    transition:.4s;
+}
+
+.price-card:hover{
+    transform:translateY(-12px) rotateX(4deg);
+    box-shadow:0 35px 80px rgba(0,0,0,.4);
+}
+
+.price-card.featured{
+    background:
+        radial-gradient(circle at 50% 0%,rgba(0,234,255,.12),transparent 45%),
+        #080a0f;
+    border-color:rgba(0,234,255,.35);
 }
 
 .badge{
-  display:inline-block;
-  background:var(--ice-red);
-  color:#fff;
-  padding:8px 18px;
-  border-radius:4px;
-  font-weight:800;
-  margin-bottom:16px;
+    position:absolute;
+    top:18px;
+    right:18px;
+    padding:6px 9px;
+    border-radius:50px;
+    background:var(--cyan);
+    color:#001014;
+    font-size:8px;
+    font-weight:900;
 }
 
-h1{
-  font-size:34px;
-  color:#fff;
-  margin-bottom:10px;
-  text-transform:uppercase;
+.price-card h3{
+    font-family:Orbitron;
+    font-size:20px;
 }
 
-.sub{
-  font-size:17px;
-  line-height:1.5;
-  margin-bottom:22px;
-  color:#ddd;
+.price{
+    font-family:Orbitron;
+    font-size:42px;
+    margin:22px 0;
 }
 
-.features{
-  display:grid;
-  gap:12px;
-  margin:22px 0;
+.price span{
+    color:var(--muted);
+    font-size:11px;
 }
 
-.feature{
-  background:linear-gradient(90deg,#191919,#242020);
-  border:1px solid #383838;
-  border-left:3px solid var(--ice-red);
-  padding:14px;
-  border-radius:4px;
-  font-size:17px;
-  font-weight:700;
+.price-card ul{
+    list-style:none;
+    color:var(--muted);
+    line-height:2.5;
+    font-size:12px;
+    margin-bottom:24px;
 }
 
-.feature span{
-  color:#ff4a52;
+.price-card li::before{
+    content:"✦";
+    color:var(--cyan);
+    margin-right:8px;
 }
 
-.signup-btn{
-  display:inline-block;
-  margin-top:8px;
-  padding:9px 16px;
-  background:var(--ice-red);
-  color:#fff;
-  text-decoration:none;
-  border-radius:4px;
-  font-size:15px;
-  font-weight:800;
-  border:1px solid var(--ice-red-dark);
-  transition:.2s;
-}
-
-.signup-btn:hover{
-  background:var(--ice-red-dark);
-}
-
-.website-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-top:16px;
-  font-size:14px;
-  font-weight:bold;
-}
-
-.website-row a{
-  text-decoration:none;
-}
-
-.website{
-  color:#ff4a52;
-}
-
-.whatsapp-small{
-  color:#39c66a;
-}
+/* CTA */
 
 .cta{
-  display:block;
-  background:#168f43;
-  color:#fff;
-  text-decoration:none;
-  padding:17px;
-  border-radius:4px;
-  font-size:20px;
-  font-weight:900;
-  margin-top:22px;
-  transition:.2s;
+    position:relative;
+    overflow:hidden;
+    padding:90px 35px;
+    text-align:center;
+    border-radius:30px;
+    border:1px solid rgba(0,234,255,.2);
+    background:
+        radial-gradient(circle at 50% 0%,rgba(0,234,255,.13),transparent 42%),
+        radial-gradient(circle at 50% 100%,rgba(139,92,255,.10),transparent 45%),
+        #080a0f;
 }
 
-.cta:hover{
-  background:#107638;
+.cta h2{
+    font-family:Orbitron;
+    font-size:clamp(32px,5vw,60px);
+    line-height:1;
 }
 
-.floating-signup{
-  position:absolute;
-  top:20px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:50;
-  background:var(--ice-red);
-  color:#fff;
-  padding:12px 24px;
-  border-radius:4px;
-  font-size:18px;
-  font-weight:900;
-  border:2px solid #fff;
-  box-shadow:0 8px 20px rgba(237,16,28,.4);
-  transition:.2s;
-  text-decoration:none;
-  display:inline-block;
+.cta p{
+    max-width:570px;
+    margin:20px auto 30px;
+    color:var(--muted);
+    line-height:1.7;
+    font-size:13px;
 }
 
-.floating-signup:hover{
-  transform:translateX(-50%) scale(1.04);
-  background:var(--ice-red-dark);
+/* CONTACT */
+
+.contact{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:50px;
 }
 
-.trust{
-  margin-top:16px;
-  color:#ddd;
-  font-size:14px;
-  line-height:1.5;
+.contact h2{
+    font-family:Orbitron;
+    font-size:52px;
+    line-height:1;
+    margin-top:22px;
 }
 
-.footer{
-  margin-top:18px;
-  font-size:12px;
-  color:#aaa;
-  line-height:1.5;
+.contact-text{
+    color:var(--muted);
+    line-height:2;
+    margin-top:22px;
+    font-size:13px;
 }
 
-.bonus-popup{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  display:grid;
-  place-items:center;
-  padding:20px;
-  background:rgba(0,0,0,.82);
+form{
+    display:grid;
+    gap:13px;
 }
 
-.bonus-popup[hidden]{
-  display:none;
-}
-
-.bonus-dialog{
-  position:relative;
-  width:min(100%,420px);
-  padding:34px 24px 28px;
-  border:2px solid var(--ice-red);
-  border-radius:8px;
-  background:#141414;
-  text-align:center;
-  color:var(--ice-text);
-  box-shadow:0 18px 60px rgba(0,0,0,.7);
-  animation:popup-enter .24s ease-out;
-}
-
-.bonus-close{
-  position:absolute;
-  top:8px;
-  right:12px;
-  border:0;
-  background:transparent;
-  color:#fff;
-  font-size:28px;
-  line-height:1;
-  cursor:pointer;
-}
-
-.bonus-dialog h2{
-  margin-bottom:10px;
-  color:var(--ice-red);
-  font-size:30px;
-}
-
-.bonus-dialog p{
-  margin-bottom:22px;
-  color:#eee;
-  line-height:1.7;
-}
-
-.bonus-claim{
-  display:block;
-  padding:14px 18px;
-  border-radius:4px;
-  background:var(--ice-red);
-  color:#fff;
-  font-size:17px;
-  font-weight:800;
-  text-decoration:none;
-}
-
-.bonus-claim:hover{
-  background:var(--ice-red-dark);
-}
-
-@keyframes popup-enter{
-  from{opacity:0;transform:translateY(10px) scale(.97)}
-  to{opacity:1;transform:translateY(0) scale(1)}
-}
-
-@media(prefers-reduced-motion:reduce){
-  .bonus-dialog{animation:none}
-}
-
-@media(max-width:768px){
-  .container{
-    flex-direction:column-reverse;
-  }
-
-  .demo,
-  .right{
+input,textarea{
     width:100%;
-  }
-
-  iframe{
-    height:500px;
-  }
-
-  .right{
-    padding:20px;
-  }
+    padding:17px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    outline:none;
+    color:white;
+    background:rgba(255,255,255,.035);
+    font-family:Inter;
 }
 
-@media(max-width:480px){
-  h1{
-    font-size:28px;
-  }
+textarea{
+    height:145px;
+    resize:none;
+}
 
-  .sub{
-    font-size:16px;
-  }
+input:focus,
+textarea:focus{
+    border-color:rgba(0,234,255,.5);
+    box-shadow:0 0 20px rgba(0,234,255,.07);
+}
 
-  .feature{
-    font-size:16px;
-    padding:12px;
-  }
+footer{
+    width:min(1180px,calc(100% - 30px));
+    margin:auto;
+    padding:30px 0 45px;
+    border-top:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    color:#666d7b;
+    font-size:10px;
+}
 
-  .signup-btn{
-    font-size:14px;
-    padding:8px 13px;
-  }
+/* REVEAL */
 
-  .cta{
-    font-size:18px;
-    padding:15px;
-  }
+.reveal{
+    opacity:0;
+    transform:translateY(45px);
+    transition:1s ease;
+}
 
-  .website-row{
-    flex-direction:column;
-    gap:8px;
-  }
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    nav ul{
+        display:none;
+    }
+
+    .hero,
+    .hologram,
+    .contact{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding-top:140px;
+    }
+
+    .dimension{
+        height:500px;
+    }
+
+    .cards,
+    .pricing{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .section-head{
+        display:block;
+    }
+
+    .section-head p{
+        margin-top:18px;
+    }
+}
+
+@media(max-width:560px){
+
+    section{
+        padding:80px 0;
+    }
+
+    .hero h1{
+        font-size:48px;
+        letter-spacing:-3px;
+    }
+
+    .dimension{
+        transform:scale(.75);
+        margin-left:-55px;
+        margin-right:-55px;
+    }
+
+    .holo-score{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .metrics{
+        grid-template-columns:1fr;
+    }
+
+    .cta{
+        padding:65px 22px;
+    }
+
+    footer{
+        display:block;
+        line-height:2;
+    }
 }
 </style>
 </head>
+
 <body>
-<div class="bonus-popup" id="bonusPopup" role="dialog" aria-modal="true" aria-labelledby="bonusTitle">
-  <div class="bonus-dialog">
-    <button class="bonus-close" id="bonusClose" type="button" aria-label="Close bonus popup">&times;</button>
-    <h2 id="bonusTitle">Bonus Offer</h2>
-    <p>10% Deposit Bonus<br>15% Losing Bonus<br>3% Referral Bonus</p>
-    <a class="bonus-claim" href="https://ice777.com/clk?src=gtm1t8Y7ZO/rWdOELQxMP">Sign Up with ICE777</a>
-  </div>
-</div>
 
-<div class="container">
-  <div class="demo">
-    <a href="https://ice777.com/clk?src=gtm1t8Y7ZO/rWdOELQxMP" target="_blank" rel="noopener noreferrer" class="floating-signup">SIGN UP WITH ICE777</a>
-    <iframe src="https://ice777.com/clk?src=gtm1t8Y7ZO/rWdOELQxMP" title="ICE777"></iframe>
-  </div>
+<div class="space"></div>
 
-  <div class="right">
-    <div class="box">
-      <div class="badge">ICE777</div>
-      <h1>Get Your ID Now</h1>
-      <p class="sub">Fast auto website service with easy deposit support. New users can start quickly through WhatsApp.</p>
+<!-- NAV -->
+<nav>
+    <div class="logo">QUANTUM<span>5D</span></div>
 
-      <div class="features">
-        <div class="feature">Minimum Deposit: <span>₹100 Only</span></div>
-        <div class="feature">Welcome Bonus: <span>10%</span></div>
-        <div class="feature">
-          ICE777 Signup:
-          <a class="signup-btn" href="https://ice777.com/clk?src=gtm1t8Y7ZO/rWdOELQxMP" target="_blank" rel="noopener noreferrer">Sign Up with ICE777</a>
+    <ul>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#performance">Performance</a></li>
+        <li><a href="#membership">Membership</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <a href="#membership" class="nav-btn">ENTER 5D</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="reveal">
+
+        <div class="eyebrow">
+            <span class="dot"></span>
+            DIMENSIONAL FITNESS SYSTEM
         </div>
-        <div class="feature">Quick Help: <span>Deposit &amp; Withdrawal Support</span></div>
-      </div>
 
-      <div class="website-row">
-        <a class="website" href="https://ice777.com/clk?src=gtm1t8Y7ZO/rWdOELQxMP" target="_blank" rel="noopener noreferrer">ICE777 website</a>
-        <a class="whatsapp-small" href="https://wa.me/+447523709988" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      </div>
+        <h1>
+            FITNESS<br>
+            <span class="outline">WITHOUT</span><br>
+            <span>LIMITS.</span>
+        </h1>
 
-      <a class="cta" href="https://wa.me/+447523709988?text=Hello%20I%20want%20new%20manual%20ID" target="_blank" rel="noopener noreferrer">WhatsApp Now</a>
-      <p class="trust">Trusted Manual Support<br>Simple Process<br>Fast Response</p>
-      <div class="footer">18+ Only | Play Responsibly | Follow Your Local Laws | T&amp;C Apply</div>
+        <p class="hero-text">
+            QUANTUM 5D transforms the gym into an immersive performance
+            environment where movement, strength, technology and data
+            exist in a completely new dimension.
+        </p>
+
+        <div class="buttons">
+            <a href="#membership" class="btn btn-primary">
+                START YOUR 5D JOURNEY →
+            </a>
+
+            <a href="#programs" class="btn btn-secondary">
+                EXPLORE SYSTEM
+            </a>
+        </div>
+
     </div>
-  </div>
-</div>
+
+    <!-- 5D VISUAL -->
+    <div class="dimension reveal">
+
+        <div class="tunnel">
+
+            <div class="portal-ring"></div>
+            <div class="portal-ring"></div>
+            <div class="portal-ring"></div>
+            <div class="portal-ring"></div>
+            <div class="portal-ring"></div>
+
+            <div class="energy"></div>
+
+        </div>
+
+        <div class="float a">
+            <small>POWER OUTPUT</small>
+            <strong>98.4%</strong>
+        </div>
+
+        <div class="float b">
+            <small>SESSION TIME</small>
+            <strong>52:18</strong>
+        </div>
+
+        <div class="float c">
+            <small>LIVE BPM</small>
+            <strong>146</strong>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs" class="reveal">
+
+    <div class="section-head">
+
+        <div>
+            <div class="eyebrow">5D TRAINING</div>
+            <h2>ENTER A<br>NEW DIMENSION.</h2>
+        </div>
+
+        <p>
+            Five-dimensional training experiences designed
+            to challenge every part of your physical performance.
+        </p>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card tilt">
+
+            <div class="card-num">01 / FORCE</div>
+
+            <div class="card-icon">◈</div>
+
+            <h3>QUANTUM STRENGTH</h3>
+
+            <p>
+                Progressive resistance and explosive power
+                training engineered for maximum strength output.
+            </p>
+
+        </div>
+
+        <div class="card tilt">
+
+            <div class="card-num">02 / VELOCITY</div>
+
+            <div class="card-icon">ϟ</div>
+
+            <h3>HYPER SPEED</h3>
+
+            <p>
+                Sprint, agility and reaction systems built
+                to increase speed and athletic movement.
+            </p>
+
+        </div>
+
+        <div class="card tilt">
+
+            <div class="card-num">03 / MOTION</div>
+
+            <div class="card-icon">◇</div>
+
+            <h3>DIMENSIONAL FLOW</h3>
+
+            <p>
+                Mobility, balance and functional movement
+                combined into a complete body-control system.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STATS -->
+<section class="reveal">
+
+    <div class="stats">
+
+        <div class="stat">
+            <strong>15K+</strong>
+            <span>MEMBERS</span>
+        </div>
+
+        <div class="stat">
+            <strong>64</strong>
+            <span>WEEKLY SESSIONS</span>
+        </div>
+
+        <div class="stat">
+            <strong>24/7</strong>
+            <span>ACCESS</span>
+        </div>
+
+        <div class="stat">
+            <strong>98%</strong>
+            <span>MEMBER SATISFACTION</span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PERFORMANCE -->
+<section id="performance" class="reveal">
+
+    <div class="section-head">
+
+        <div>
+            <div class="eyebrow">NEURAL PERFORMANCE</div>
+            <h2>MEASURE.<br>ADAPT. EVOLVE.</h2>
+        </div>
+
+        <p>
+            Your performance data becomes the blueprint
+            for your next level.
+        </p>
+
+    </div>
+
+    <div class="hologram">
+
+        <div class="holo-main">
+
+            <div class="holo-top">
+                <div class="holo-title">QUANTUM CORE</div>
+                <div class="live">● SYSTEM ONLINE</div>
+            </div>
+
+            <div class="holo-score">
+
+                <div class="score">
+                    <strong>92</strong>
+                </div>
+
+                <div>
+                    <h3>Peak Performance</h3>
+
+                    <p>
+                        Your current training output is
+                        14% higher than your previous cycle.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="metrics">
+
+                <div class="metric">
+                    <small>CALORIES</small>
+                    <strong>742</strong>
+                </div>
+
+                <div class="metric">
+                    <small>POWER</small>
+                    <strong>1.02KW</strong>
+                </div>
+
+                <div class="metric">
+                    <small>REPS</small>
+                    <strong>186</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="holo-side">
+
+            <h3>PERFORMANCE MATRIX</h3>
+
+            <div class="progress">
+                <div class="progress-top">
+                    <span>Strength</span>
+                    <span>89%</span>
+                </div>
+
+                <div class="track">
+                    <div class="fill"></div>
+                </div>
+            </div>
+
+            <div class="progress">
+                <div class="progress-top">
+                    <span>Speed</span>
+                    <span>74%</span>
+                </div>
+
+                <div class="track">
+                    <div class="fill two"></div>
+                </div>
+            </div>
+
+            <div class="progress">
+                <div class="progress-top">
+                    <span>Mobility</span>
+                    <span>95%</span>
+                </div>
+
+                <div class="track">
+                    <div class="fill three"></div>
+                </div>
+            </div>
+
+            <div class="progress">
+                <div class="progress-top">
+                    <span>Recovery</span>
+                    <span>82%</span>
+                </div>
+
+                <div class="track">
+                    <div class="fill four"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MEMBERSHIP -->
+<section id="membership" class="reveal">
+
+    <div class="section-head">
+
+        <div>
+            <div class="eyebrow">MEMBERSHIP</div>
+            <h2>SELECT YOUR<br>DIMENSION.</h2>
+        </div>
+
+        <p>
+            Choose the training level that matches your ambition.
+        </p>
+
+    </div>
+
+    <div class="pricing">
+
+        <div class="price-card">
+
+            <h3>CORE</h3>
+
+            <div class="price">
+                $39 <span>/ month</span>
+            </div>
+
+            <ul>
+                <li>Gym access</li>
+                <li>Standard equipment</li>
+                <li>Locker access</li>
+                <li>Training application</li>
+            </ul>
+
+            <a href="#contact" class="btn btn-secondary">
+                SELECT CORE
+            </a>
+
+        </div>
+
+        <div class="price-card featured">
+
+            <div class="badge">MOST POPULAR</div>
+
+            <h3>QUANTUM</h3>
+
+            <div class="price">
+                $69 <span>/ month</span>
+            </div>
+
+            <ul>
+                <li>24/7 gym access</li>
+                <li>All training programs</li>
+                <li>Performance analytics</li>
+                <li>Monthly assessment</li>
+            </ul>
+
+            <a href="#contact" class="btn btn-primary">
+                SELECT QUANTUM
+            </a>
+
+        </div>
+
+        <div class="price-card">
+
+            <h3>APEX</h3>
+
+            <div class="price">
+                $129 <span>/ month</span>
+            </div>
+
+            <ul>
+                <li>Everything in Quantum</li>
+                <li>Personal coaching</li>
+                <li>Recovery technology</li>
+                <li>Advanced performance data</li>
+            </ul>
+
+            <a href="#contact" class="btn btn-secondary">
+                SELECT APEX
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+<section class="reveal">
+
+    <div class="cta">
+
+        <h2>YOUR NEXT LEVEL<br>IS ANOTHER DIMENSION.</h2>
+
+        <p>
+            Stop training inside the limits of yesterday.
+            Enter QUANTUM 5D and redefine what your body can do.
+        </p>
+
+        <a href="#contact" class="btn btn-primary">
+            ENTER THE 5D EXPERIENCE →
+        </a>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact reveal">
+
+    <div>
+
+        <div class="eyebrow">CONTACT SYSTEM</div>
+
+        <h2>LET'S<br>EVOLVE.</h2>
+
+        <p class="contact-text">
+            QUANTUM 5D FITNESS<br>
+            Future Performance District<br>
+            Open 24 Hours<br><br>
+            +1 800 5D TRAIN<br>
+            hello@quantum5d.com
+        </p>
+
+    </div>
+
+    <form onsubmit="sendMessage(event)">
+
+        <input
+            type="text"
+            placeholder="Your Name"
+            required
+        >
+
+        <input
+            type="email"
+            placeholder="Email Address"
+            required
+        >
+
+        <input
+            type="text"
+            placeholder="Phone Number"
+        >
+
+        <textarea
+            placeholder="Tell us about your fitness goals..."
+            required
+        ></textarea>
+
+        <button class="btn btn-primary" type="submit">
+            SEND TRANSMISSION →
+        </button>
+
+    </form>
+
+</section>
+
+<footer>
+    <div>© 2026 QUANTUM 5D FITNESS</div>
+    <div>TRAIN BEYOND DIMENSIONS</div>
+</footer>
 
 <script>
-const bonusPopup = document.getElementById('bonusPopup');
-const bonusClose = document.getElementById('bonusClose');
 
-function closeBonusPopup(){
-  bonusPopup.hidden = true;
+/* 5D CARD TILT */
+
+document.querySelectorAll(".tilt").forEach(card => {
+
+    card.addEventListener("mousemove", e => {
+
+        const box = card.getBoundingClientRect();
+
+        const x = e.clientX - box.left;
+        const y = e.clientY - box.top;
+
+        const rotateY = (x / box.width - .5) * 18;
+        const rotateX = (y / box.height - .5) * -18;
+
+        card.style.transform =
+            `rotateX(${rotateX}deg)
+             rotateY(${rotateY}deg)
+             translateZ(25px)`;
+
+    });
+
+    card.addEventListener("mouseleave", () => {
+
+        card.style.transform =
+            "rotateX(0deg) rotateY(0deg) translateZ(0)";
+
+    });
+
+});
+
+
+/* HERO PARALLAX */
+
+const dimension = document.querySelector(".dimension");
+
+document.addEventListener("mousemove", e => {
+
+    if(window.innerWidth < 900) return;
+
+    const x =
+        (e.clientX / window.innerWidth - .5) * 2;
+
+    const y =
+        (e.clientY / window.innerHeight - .5) * 2;
+
+    dimension.style.transform =
+        `rotateY(${x * 5}deg)
+         rotateX(${y * -5}deg)`;
+
+});
+
+
+/* SCROLL REVEAL */
+
+const observer = new IntersectionObserver(
+    entries => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+                entry.target.classList.add("active");
+            }
+
+        });
+
+    },
+    {threshold:.12}
+);
+
+document.querySelectorAll(".reveal").forEach(el => {
+    observer.observe(el);
+});
+
+
+/* CONTACT FORM */
+
+function sendMessage(event){
+
+    event.preventDefault();
+
+    alert(
+        "Transmission received! Welcome to QUANTUM 5D."
+    );
+
+    event.target.reset();
+
 }
 
-bonusClose.addEventListener('click', closeBonusPopup);
-bonusPopup.addEventListener('click', (event) => {
-  if(event.target === bonusPopup) closeBonusPopup();
-});
-document.addEventListener('keydown', (event) => {
-  if(event.key === 'Escape') closeBonusPopup();
-});
 </script>
+
 </body>
 </html>
+```
